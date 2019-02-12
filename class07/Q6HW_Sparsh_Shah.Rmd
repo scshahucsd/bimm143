@@ -1,0 +1,33 @@
+---
+title: "Q6Homework"
+author: "Sparsh Shah"
+date: "January 30, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Plot Function
+
+The function plots a protein. The input of the function is the protein name. The code runs just like the function we had done in class except now, we can efficiently plot the proteins with one simple line instead of copy and pasting the entire code over and over for each protein. The function produces the plot. 
+
+```{r}
+library("bio3d")
+plotProtein = function(proteinName) {
+  s = read.pdb(proteinName)
+  s.chainA = trim.pdb(s, chain="A", elety="CA")
+  s.b = s.chainA$atom$b
+  plotb3(s.b, sse=s.chainA, typ="l", ylab="Bfactor")
+}
+```
+
+Now, we can show the function efficiently plotting the three proteins in class with less lines of code.
+
+```{r}
+plotProtein("4AKE")
+plotProtein("1AKE")
+plotProtein("1E4Y")
+```
+
